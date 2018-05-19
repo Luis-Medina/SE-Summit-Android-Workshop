@@ -8,7 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.summit.summitproject.model.Transaction;
+import com.summit.summitproject.prebuilt.model.Transaction;
+import com.summit.summitproject.prebuilt.model.TransactionAdapter;
 
 import java.util.List;
 

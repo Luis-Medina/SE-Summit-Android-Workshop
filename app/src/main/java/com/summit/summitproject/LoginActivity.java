@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.summit.summitproject.login.LoginListener;
-import com.summit.summitproject.login.LoginManager;
-import com.summit.summitproject.model.Transaction;
+import com.summit.summitproject.prebuilt.login.LoginListener;
+import com.summit.summitproject.prebuilt.login.LoginManager;
+import com.summit.summitproject.prebuilt.model.Transaction;
 
 import java.util.ArrayList;
 
