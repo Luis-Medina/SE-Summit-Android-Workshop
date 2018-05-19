@@ -20,37 +20,17 @@ import java.util.List;
  */
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
 
-    /**
-     * The list of credit card transactions which will be adapted to the UI.
-     */
-    private List<Transaction> transactions = new ArrayList<>();
+    public TransactionAdapter() {
 
-    /**
-     * A listener to deliver callbacks to whenever a transaction in the list is clicked.
-     */
-    private TransactionClickedListener listener;
-
-    /**
-     * Takes in the list of transactions that should be rendered and a listener to receive callbacks
-     * if the user clicks on a particular row.
-     */
-    public TransactionAdapter(List<Transaction> transactions, TransactionClickedListener listener) {
-        this.transactions = transactions;
-        this.listener = listener;
     }
 
     /**
-     * Called when the UI needs the a new row (at {position}) to be <b>created</b>. In this case,
-     * all of our rows look the same, so we just inflate the same layout for all rows.
-     * <br>
-     * The new row isn't filled with data yet, that's done by
-     * {@link TransactionAdapter#onBindViewHolder(ViewHolder, int)}
+     * Called when the UI needs the a new row (at {position}) to be <b>created</b>.
      */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_transaction, parent, false);
-        return new ViewHolder(view);
+        return null;
     }
 
     /**
@@ -59,19 +39,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        // Use the transaction at index {position} to set up the row's UI widgets
-        holder.merchant.setText(transactions.get(position).getMerchant());
-        holder.amount.setText(transactions.get(position).getAmount());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Inform the click listener that this row was clicked and pass the Transaction
-                // associated with this row.
-                if (listener != null) {
-                    listener.onTransactionClicked(transactions.get(holder.getAdapterPosition()));
-                }
-            }
-        });
+
     }
 
     /**
@@ -79,7 +47,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
      */
     @Override
     public int getItemCount() {
-        return transactions.size();
+        return 0;
     }
 
     /**
@@ -100,12 +68,5 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             merchant = rootView.findViewById(R.id.merchant);
             amount = rootView.findViewById(R.id.amount);
         }
-    }
-
-    /**
-     * Will receive callbacks whenever a transaction in the list is clicked.
-     */
-    interface TransactionClickedListener {
-        void onTransactionClicked(Transaction transaction);
     }
 }
