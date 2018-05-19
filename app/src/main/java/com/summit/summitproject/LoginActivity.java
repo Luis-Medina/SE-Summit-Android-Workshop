@@ -28,21 +28,6 @@ import java.util.ArrayList;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    /**
-     * The key under which the <b>username</b> will be stored in {@link SharedPreferences}.
-     */
-    private static final String PREF_USERNAME = "USERNAME";
-
-    /**
-     * The key under which the <b>password</b> will be stored in {@link SharedPreferences}.
-     */
-    private static final String PREF_PASSWORD = "PASSWORD";
-
-    /**
-     * Used to persist user credentials if "Remember Me" is checked.
-     */
-    private SharedPreferences sharedPreferences;
-
     // UI Widgets
 
     private EditText username;
@@ -50,8 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
 
     private Button signIn;
-
-    private CheckBox rememberMe;
 
     private ProgressBar progress;
 
@@ -67,16 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         signIn = findViewById(R.id.sign_in);
-        rememberMe = findViewById(R.id.remember_me);
         progress = findViewById(R.id.progress);
 
         setupWidgets();
-
-        // If user credentials were previously stored, pre-fill the username / password
-        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        rememberMe.setChecked(sharedPreferences.contains(PREF_USERNAME));
-        username.setText(sharedPreferences.getString(PREF_USERNAME, ""));
-        password.setText(sharedPreferences.getString(PREF_PASSWORD, ""));
     }
 
     /**
@@ -92,11 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Store user credentials in private storage if "Remember Me" was checked
-                if (rememberMe.isChecked()) {
-                    saveUserCredentials();
-                }
-
                 // Don't allow user input while logging in & show the progress bar
                 setAllEnabled(false);
                 progress.setVisibility(View.VISIBLE);
@@ -108,36 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                 loginManager.execute();
             }
         });
-
-        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // If "Remember Me" was previously checked and the user no longer wants their
-                // credentials remembered, clear the credentials from storage.
-                if (!isChecked) {
-                    clearUserCredentials();
-                }
-            }
-        });
-    }
-
-    /**
-     * Save the username nad password to local storage.
-     */
-    private void saveUserCredentials() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PREF_USERNAME, username.getText().toString());
-        editor.putString(PREF_PASSWORD, password.getText().toString());
-        editor.apply();
-    }
-
-    /**
-     * Clear the username and password from local storage.
-     */
-    private void clearUserCredentials() {
-        username.setText("");
-        password.setText("");
-        sharedPreferences.edit().clear().apply();
     }
 
     /**
