@@ -105,7 +105,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     /**
      * Will receive callbacks whenever a transaction in the list is clicked.
      */
-    interface TransactionClickedListener {
+    public interface TransactionClickedListener {
         void onTransactionClicked(Transaction transaction);
     }
 }
