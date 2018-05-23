@@ -96,6 +96,6 @@ public class SummaryActivity extends AppCompatActivity implements TransactionAda
      */
     @Override
     public void onTransactionClicked(Transaction transaction) {
-        Toast.makeText(this, "You clicked: " + transaction.getMerchant(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.transaction_selected, transaction.getMerchant()), Toast.LENGTH_LONG).show();
     }
 }
