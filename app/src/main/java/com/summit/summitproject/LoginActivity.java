@@ -169,7 +169,13 @@ public class LoginActivity extends AppCompatActivity {
                 saveUserCredentials();
             }
 
-            Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_LONG).show();
+            // Start the SummaryActivity and also pass the user's name,
+            // card number, and list of transactions in the launch intent.
+            Intent intent = new Intent(LoginActivity.this, SummaryActivity.class);
+            intent.putExtra(SummaryActivity.KEY_NAME, name);
+            intent.putExtra(SummaryActivity.KEY_CARD_NUM, cardNum);
+            intent.putExtra(SummaryActivity.KEY_TRANSACTIONS, transactions);
+            startActivity(intent);
         }
 
         @Override
