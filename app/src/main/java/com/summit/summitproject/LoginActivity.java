@@ -92,11 +92,6 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Store user credentials in private storage if "Remember Me" was checked
-                if (rememberMe.isChecked()) {
-                    saveUserCredentials();
-                }
-
                 // Don't allow user input while logging in & show the progress bar
                 setAllEnabled(false);
                 progress.setVisibility(View.VISIBLE);
@@ -168,6 +163,11 @@ public class LoginActivity extends AppCompatActivity {
             // hide the progress bar again
             setAllEnabled(true);
             progress.setVisibility(View.INVISIBLE);
+
+            // Store user credentials in private storage if "Remember Me" was checked
+            if (rememberMe.isChecked()) {
+                saveUserCredentials();
+            }
 
             Toast.makeText(LoginActivity.this, "Login success!", Toast.LENGTH_LONG).show();
         }
