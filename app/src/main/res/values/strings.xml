@@ -5,6 +5,4 @@
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="remember_me">Remember Me</string>
-    <string name="summary_title">Hello, %1$s</string>
-    <string name="summary_subtitle">Your recent transactions for Card x%1$s:</string>
 </resources>
