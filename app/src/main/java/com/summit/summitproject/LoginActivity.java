@@ -62,12 +62,12 @@ public class LoginActivity extends AppCompatActivity {
         username.addTextChangedListener(textWatcher);
         password.addTextChangedListener(textWatcher);
 
-        final String inputtedUsername = username.getText().toString();
-        final String inputtedPassword = password.getText().toString();
-
         signIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                String inputtedUsername = username.getText().toString();
+                String inputtedPassword = password.getText().toString();
+
                 // Don't allow user input while logging in & show the progress bar
                 setAllEnabled(false);
                 progress.setVisibility(View.VISIBLE);
